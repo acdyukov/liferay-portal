@@ -105,7 +105,7 @@ if (group != null) {
 				searchContainer.setEmptyResultsMessage(null);
 			}
 
-			searchContainer.setRowChecker(new SiteChecker(renderResponse));
+			searchContainer.setRowChecker(new SiteChecker(renderResponse, permissionChecker));
 
 			GroupSearchTerms searchTerms = (GroupSearchTerms)searchContainer.getSearchTerms();
 

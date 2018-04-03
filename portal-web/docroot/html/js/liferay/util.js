@@ -2132,7 +2132,7 @@
 					function() {
 						Liferay.Util.toggleDisabled(buttonId, !Liferay.Util.listCheckedExcept(form, ignoreFieldName));
 					},
-					'input[type=checkbox]'
+					'input[type=checkbox]:enabled'
 				);
 			}
 		},

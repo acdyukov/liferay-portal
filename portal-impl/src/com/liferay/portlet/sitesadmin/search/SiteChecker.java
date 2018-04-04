@@ -18,6 +18,9 @@ import com.liferay.portal.kernel.dao.search.RowChecker;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.security.permission.ActionKeys;
+import com.liferay.portal.security.permission.PermissionChecker;
+import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 
 import javax.portlet.PortletResponse;
@@ -27,8 +30,10 @@ import javax.portlet.PortletResponse;
  */
 public class SiteChecker extends RowChecker {
 
-	public SiteChecker(PortletResponse portletResponse) {
+	public SiteChecker(PortletResponse portletResponse, PermissionChecker permissionChecker) {
 		super(portletResponse);
+		_permissionChecker = permissionChecker;
+		//super(portletResponse);
 	}
 
 	@Override
@@ -46,8 +51,15 @@ public class SiteChecker extends RowChecker {
 			_log.error(e, e);
 		}
 
+		if (!_permissionChecker.hasPermission(group.getGroupId(), Group.class.getName(),
+				group.getGroupId(), ActionKeys.DELETE)) {
+			return true;
+		}
+
 		return super.isDisabled(obj);
 	}
+
+	private PermissionChecker _permissionChecker;
 
 	private static Log _log = LogFactoryUtil.getLog(SiteChecker.class);
 

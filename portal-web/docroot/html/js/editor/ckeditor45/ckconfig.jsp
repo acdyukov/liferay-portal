@@ -163,7 +163,7 @@ String contentsLanguageDir = LanguageUtil.get(contentsLocale, "lang.dir");
 	
 	config.extraAllowedContent = 'p(*)[*]{*};div(*)[*]{*};li(*)[*]{*};ul(*)[*]{*};span(*)[*]{*};a(*)[*]{*};i(*)[*]{*}';
 
-	config.extraPlugins = 'a11yhelpbtn,media,scayt,wsc,lineheight,uploadArticle,fontawesome,font,bootstrapAlert,bootstrapButtons,texttransform,ecollapse,maximize,tablestickyfilter';
+	config.extraPlugins = 'a11yhelpbtn,media,scayt,wsc,lineheight,uploadArticle,fontawesome,font,bootstrapAlert,bootstrapButtons,texttransform,ecollapse,maximize,tablestickyfilter,pastebase64,base64image';
 
 	<c:if test="<%= inlineEdit %>">
 		config.extraPlugins += ',ajaxsave,restore,lineheight,uploadArticle,fontawesome,font,bootstrapAlert,bootstrapButtons,texttransform,ecollapse';
@@ -224,7 +224,7 @@ String contentsLanguageDir = LanguageUtil.get(contentsLocale, "lang.dir");
 		['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent'],
 		['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
 		['TransformTextSwitcher','TransformTextToLowercase','TransformTextToUppercase','TransformTextCapitalize'],
-		['Image', 'Link', 'Unlink', 'Anchor'],
+		['Image', 'base64image', 'Link', 'Unlink', 'Anchor'],
 		['Flash', <c:if test="<%= XugglerUtil.isEnabled() %>"> 'Audio', 'Video',</c:if> 'Table', '-', 'Smiley', 'SpecialChar'],
 		['Find', 'Replace', 'SpellChecker', 'Scayt'],
 		['SelectAll', 'RemoveFormat'],
@@ -258,7 +258,7 @@ String contentsLanguageDir = LanguageUtil.get(contentsLocale, "lang.dir");
 			['UploadArticle'],
 		</c:if>
 		['Link', 'Unlink', 'Anchor'],
-		['Image', 'Flash', <c:if test="<%= XugglerUtil.isEnabled() %>">'Audio', 'Video',</c:if> 'Table', '-', 'Smiley', 'SpecialChar', 'LiferayPageBreak'],
+		['Image', 'base64image', 'Flash', <c:if test="<%= XugglerUtil.isEnabled() %>">'Audio', 'Video',</c:if> 'Table', '-', 'Smiley', 'SpecialChar', 'LiferayPageBreak'],
 		['Maximize'],
 		['A11YBtn']
 	];

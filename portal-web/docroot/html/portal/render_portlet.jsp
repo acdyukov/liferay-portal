@@ -371,6 +371,10 @@ portletDisplay.setStateNormal(windowState.equals(WindowState.NORMAL));
 portletDisplay.setStatePopUp(themeDisplay.isStatePopUp());
 portletDisplay.setPortletSetup(portletSetup);
 portletDisplay.setWebDAVEnabled(portlet.getWebDAVStorageInstance() != null);
+portletDisplay.setUseLinkForTitle(GetterUtil.getBoolean(
+		portletSetup.getValue("portletSetupUseLinkForTitle", null)));
+portletDisplay.setLinkForTitle(GetterUtil.getString(
+		portletSetup.getValue("portletSetupLinkForTitle", null)));
 
 // Portlet custom CSS class name
 

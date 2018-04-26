@@ -835,7 +835,9 @@ AUI.add(
 						showBorders: EMPTY,
 						title: EMPTY,
 						titles: {},
-						useCustomTitle: false
+						useCustomTitle: false,
+						useLinkForTitle: false,
+						linkForTitle: EMPTY
 					},
 					spacingData: {
 						margin: {
@@ -964,6 +966,8 @@ AUI.add(
 
 					instance._customTitleInput = instance._getNodeById('custom-title');
 					instance._customTitleCheckbox = instance._getNodeById('use-custom-titleCheckbox');
+                    instance._useLinkForTitle = instance._getNodeById('use-link-for-titleCheckbox');
+                    instance._linkForTitle = instance._getNodeById('link-for-title');
 					instance._showBorders = instance._getNodeById('show-borders');
 					instance._borderNote = A.one('#border-note');
 					instance._portletLanguage = instance._getNodeById('lfr-portlet-language');
@@ -1182,6 +1186,14 @@ AUI.add(
 						CLICK,
 						function() {
 							instance._objData.advancedData.customCSS = instance._customCSS.val();
+							if (!instance._useLinkForTitle) {
+								instance._useLinkForTitle = instance._getNodeById('use-link-for-titleCheckbox');
+							}
+							instance._objData.portletData.useLinkForTitle = instance._useLinkForTitle.get(CHECKED);
+							if (!instance._linkForTitle) {
+                                instance._linkForTitle = instance._getNodeById('link-for-title');
+							}
+							instance._objData.portletData.linkForTitle = instance._linkForTitle.val();
 
 							var previousCSSClass = instance._objData.advancedData.customCSSClassName;
 							var newCSSClass = instance._customCSSClassName.val();
@@ -1278,6 +1290,8 @@ AUI.add(
 				var portletData = instance._objData.portletData;
 				var customTitleInput = instance._customTitleInput;
 				var customTitleCheckbox = instance._customTitleCheckbox;
+				var useLinkForTitle = instance._useLinkForTitle;
+				var linkForTitle = instance._linkForTitle;
 				var showBorders = instance._showBorders;
 				var language = instance._portletLanguage;
 				var borderNote = instance._borderNote;
@@ -1339,6 +1353,29 @@ AUI.add(
 						}
 					}
 				);
+
+				// Use link for title
+
+                useLinkForTitle.detach(CLICK);
+
+                useLinkForTitle.on(
+                    CLICK,
+                    function(event) {
+                        var value = event.currentTarget.get(CHECKED);
+                        instance._linkForTitle.set(DISABLED, !value);
+                    }
+                );
+
+                linkForTitle.detach(KEYUP);
+
+                linkForTitle.on(
+                    KEYUP,
+                    function(event) {
+                        if (!portletData.useLinkForTitle) {
+                            return;
+                        }
+                    }
+                );
 
 				// Show borders
 
@@ -1502,6 +1539,8 @@ AUI.add(
 				// Portlet config
 
 				instance._setCheckbox(instance._customTitleCheckbox, portletData.useCustomTitle);
+				instance._setCheckbox(instance._useLinkForTitle, portletData.useLinkForTitle);
+				instance._setInput(instance._linkForTitle, portletData.linkForTitle)
 				instance._setSelect(instance._showBorders, portletData.showBorders);
 				instance._setSelect(instance._portletLanguage, instance._currentLanguage);
 				instance._setSelect(instance._portletLinksTarget, portletData.portletLinksTarget);
@@ -1530,6 +1569,8 @@ AUI.add(
 				}
 
 				instance._setInput(instance._customTitleInput, portletTitle);
+
+                instance._linkForTitle.attr(DISABLED, !portletData.useLinkForTitle);
 
 				// Text
 

@@ -10,6 +10,8 @@
 #set ($show_portlet_title = $portlet_display.getControlPanelCategory().startsWith("site_administration."))
 #set ($show_portlet_description = $enable_portlet_descriptions == "1" && $sessionClicks.get($request, "show-portlet-description-$portlet_id", "1") == "1")
 #set ($valid_portlet_description = $validator.isNotNull($portlet_description) && $portlet_description.indexOf('javax.portlet.description') == -1)
+#set ($portlet_use_link_for_title = $portlet_display.isUseLinkForTitle())
+#set ($portlet_link_for_title = $portlet_display.getLinkForTitle())
 
 #if ($show_portlet_description)
 	#set ($portlet_title_icon_css_class = "hide")
@@ -28,7 +30,15 @@
 
 		#if ($show_portlet_title)
 			<h2 class="portlet-title" id="cpPortletTitle">
-				<span class="portlet-title-text">$portlet_title</span>
+				<span class="portlet-title-text#if($portlet_use_link_for_title) not-editable#end">
+					#if($portlet_use_link_for_title)
+                    <a href="$portlet_link_for_title">
+					#end
+						$portlet_title
+					#if($portlet_use_link_for_title)
+                    </a>
+					#end
+				</span>
 
 				#if ($valid_portlet_description)
 					$theme.iconHelp($portlet_description)

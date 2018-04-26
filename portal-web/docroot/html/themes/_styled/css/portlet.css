@@ -265,6 +265,11 @@ body.portlet {
 	.portlet-options li.lfr-trigger strong a {
 		background-image: url(../images/portlet/options_borderless.png);
 	}
+
+	.portlet-title-default a {
+		text-indent: 0px;
+		width: auto;
+	}
 }
 
 .lfr-configurator-visibility {

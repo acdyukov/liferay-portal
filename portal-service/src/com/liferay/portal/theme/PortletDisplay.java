@@ -103,6 +103,8 @@ public class PortletDisplay implements Serializable {
 		_urlPrint = master.getURLPrint();
 		_urlRefresh = master.getURLRefresh();
 		_webDAVEnabled = master.isWebDAVEnabled();
+		_useLinkForTitle = master.isUseLinkForTitle();
+		_linkForTitle = master.getLinkForTitle();
 	}
 
 	public void copyTo(PortletDisplay slave) {
@@ -167,7 +169,8 @@ public class PortletDisplay implements Serializable {
 		slave.setURLPrint(_urlPrint);
 		slave.setURLRefresh(_urlRefresh);
 		slave.setWebDAVEnabled(_webDAVEnabled);
-
+		slave.setUseLinkForTitle(_useLinkForTitle);
+		slave.setLinkForTitle(_linkForTitle);
 		slave._title = _title;
 	}
 
@@ -448,6 +451,14 @@ public class PortletDisplay implements Serializable {
 		return _webDAVEnabled;
 	}
 
+	public boolean isUseLinkForTitle() {
+		return _useLinkForTitle;
+	}
+
+	public String getLinkForTitle() {
+		return _linkForTitle;
+	}
+
 	public void recycle() {
 		if (_log.isDebugEnabled()) {
 			_log.debug("Recycling instance " + hashCode());
@@ -514,6 +525,8 @@ public class PortletDisplay implements Serializable {
 		_urlPrint = StringPool.BLANK;
 		_urlRefresh = StringPool.BLANK;
 		_webDAVEnabled = false;
+		_useLinkForTitle = false;
+		_linkForTitle = StringPool.BLANK;
 	}
 
 	/**
@@ -783,6 +796,14 @@ public class PortletDisplay implements Serializable {
 		_webDAVEnabled = webDAVEnabled;
 	}
 
+	public void setUseLinkForTitle(boolean _useLinkForTitle) {
+		this._useLinkForTitle = _useLinkForTitle;
+	}
+
+	public void setLinkForTitle(String _linkForTitle) {
+		this._linkForTitle = _linkForTitle;
+	}
+
 	public void writeContent(Writer writer) throws IOException {
 		_content.writeTo(writer);
 	}
@@ -839,6 +860,8 @@ public class PortletDisplay implements Serializable {
 	private boolean _statePopUp;
 	private ThemeDisplay _themeDisplay;
 	private String _title = StringPool.BLANK;
+	private boolean _useLinkForTitle;
+	private String _linkForTitle;
 	private String _urlBack = StringPool.BLANK;
 	private String _urlClose = StringPool.BLANK;
 	private String _urlConfiguration = StringPool.BLANK;

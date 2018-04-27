@@ -61,6 +61,10 @@ if (PropsValues.MOBILE_DEVICE_STYLING_WAP_ENABLED) {
 						</aui:select>
 					</span>
 
+					<aui:input name="use-link-for-title" type="checkbox"/>
+
+					<aui:input name="link-for-title" type="text"/>
+
 					<aui:select label="link-portlet-urls-to-page" name="lfr-point-links">
 						<aui:option label="current-page" value="" />
 

@@ -160,7 +160,15 @@ boolean wsrp = ParamUtil.getBoolean(PortalUtil.getOriginalServletRequest(request
 					<c:if test="<%= showPortletActions || portletDisplay.isShowBackIcon() %>">
 						<div class="portlet-borderless-bar">
 							<c:if test="<%= showPortletActions %>">
-								<span class="portlet-title-default"><%= HtmlUtil.escape(portletDisplay.getTitle()) %></span>
+								<span class="portlet-title-default<%if(portletDisplay.isUseLinkForTitle()) {%> not-editable<%}%>">
+									<c:if test="<%=portletDisplay.isUseLinkForTitle()%>">
+										<a href="<%=portletDisplay.getLinkForTitle()%>">
+									</c:if>
+									<%= HtmlUtil.escape(portletDisplay.getTitle()) %>
+									<c:if test="<%=portletDisplay.isUseLinkForTitle()%>">
+										</a>
+									</c:if>
+								</span>
 
 								<span class="portlet-actions">
 									<span class="portlet-action portlet-options">

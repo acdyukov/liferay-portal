@@ -95,6 +95,8 @@ public class UpdateLookAndFeelAction extends JSONAction {
 		css = jsonObj.toString();
 
 		boolean useCustomTitle = portletData.getBoolean("useCustomTitle");
+		boolean useLinkForTitle = portletData.getBoolean("useLinkForTitle");
+		String linkForTitle = portletData.getString("linkForTitle");
 		String showBorders = portletData.getString("showBorders");
 		String linkToLayoutUuid = GetterUtil.getString(
 			portletData.getString("portletLinksTarget"));
@@ -123,6 +125,12 @@ public class UpdateLookAndFeelAction extends JSONAction {
 
 		portletSetup.setValue(
 			"portletSetupUseCustomTitle", String.valueOf(useCustomTitle));
+
+		portletSetup.setValue(
+				"portletSetupUseLinkForTitle", String.valueOf(useLinkForTitle));
+
+		portletSetup.setValue(
+				"portletSetupLinkForTitle", linkForTitle);
 
 		if (Validator.isNotNull(showBorders)) {
 			boolean showBordersBoolean = portletData.getBoolean("showBorders");

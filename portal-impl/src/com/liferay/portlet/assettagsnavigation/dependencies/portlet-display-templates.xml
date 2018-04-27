@@ -4,7 +4,7 @@
 	<template>
 		<template-key>asset-tags-navigation-color-by-popularity-ftl</template-key>
 		<name>Цвета по популярности</name>
-		<description>Отображаются тэги с цветами по полярности: красный (самый популярный), желтый (средний), зеленый (нименее популярный).</description>
+		<description>Отображаются тэги с цветами по популярности: красный (самый популярный), желтый (средний), зеленый (наименее популярный).</description>
 		<language>ftl</language>
 		<script-file>com/liferay/portlet/assettagsnavigation/dependencies/portlet_display_template_color_by_popularity.ftl</script-file>
 		<cacheable>false</cacheable>

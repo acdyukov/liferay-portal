@@ -4,7 +4,7 @@
 	<template>
 		<template-key>asset-publisher-rich-summary-ftl</template-key>
 		<name>Аннотации</name>
-		<description>Отображаются краткое описание, иконки, связный контент, кнопки печати и редактирования для каждой записи. Опционально могут отображаться закладки и рейтинги.</description>
+		<description>Отображаются краткое описание, иконки, связанный контент, кнопки печати и редактирования для каждой записи. Опционально могут отображаться закладки и рейтинги.</description>
 		<language>ftl</language>
 		<script-file>com/liferay/portlet/assetpublisher/dependencies/portlet_display_template_rich_summary.ftl</script-file>
 		<cacheable>false</cacheable>

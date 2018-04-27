@@ -4,7 +4,7 @@
 	<template>
 		<template-key>site-map-multi-column-layout-ftl</template-key>
 		<name>Многоколоночный шаблон</name>
-		<description>Каждая страница вернего уровня отображется в отдельной колонке. Каждая колонка содердит имя верхнеуровневой страницы с ближайшими подстраницами, перечисленными ниже.</description>
+		<description>Каждая страница верхнего уровня отображется в отдельной колонке. Каждая колонка содержит имя верхнеуровневой страницы с ближайшими подстраницами, перечисленными ниже.</description>
 		<language>ftl</language>
 		<script-file>com/liferay/portlet/sitemap/dependencies/portlet_display_template_multi_column_layout.ftl</script-file>
 		<cacheable>false</cacheable>

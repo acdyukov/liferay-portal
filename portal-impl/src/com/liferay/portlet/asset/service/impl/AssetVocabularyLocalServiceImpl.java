@@ -25,9 +25,8 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.Group;
-import com.liferay.portal.model.ResourceConstants;
-import com.liferay.portal.model.User;
+import com.liferay.portal.model.*;
+import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PropsValues;
@@ -61,13 +60,23 @@ public class AssetVocabularyLocalServiceImpl
 
 		Group group = groupLocalService.getGroup(groupId);
 
-		long defaultUserId = userLocalService.getDefaultUserId(
-			group.getCompanyId());
+		long adminUserId = userLocalService.getDefaultUserId(group.getCompanyId());
+
+		Role adminRole = RoleLocalServiceUtil.getRole(group.getCompanyId(), RoleConstants.ADMINISTRATOR);
+
+		List<User> adminUsers = userLocalService.getRoleUsers(adminRole.getRoleId());
+
+		for (User user: adminUsers) {
+			if (Validator.isNotNull(user)) {
+				adminUserId = user.getUserId();
+				break;
+			}
+		}
 
 		Map<Locale, String> titleMap = new HashMap<Locale, String>();
 
 		titleMap.put(
-			LocaleUtil.getSiteDefault(), PropsValues.ASSET_VOCABULARY_DEFAULT);
+				LocaleUtil.getSiteDefault(), PropsValues.ASSET_VOCABULARY_DEFAULT);
 
 		ServiceContext serviceContext = new ServiceContext();
 
@@ -78,8 +87,8 @@ public class AssetVocabularyLocalServiceImpl
 		serviceContext.setAddGuestPermissions(Boolean.TRUE);
 
 		return addVocabulary(
-			defaultUserId, StringPool.BLANK, titleMap, null, StringPool.BLANK,
-			serviceContext);
+				adminUserId, StringPool.BLANK, titleMap, null, StringPool.BLANK,
+				serviceContext);
 	}
 
 	/**

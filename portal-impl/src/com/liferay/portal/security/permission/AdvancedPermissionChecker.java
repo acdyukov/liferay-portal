@@ -431,7 +431,7 @@ public class AdvancedPermissionChecker extends BasePermissionChecker {
             long companyId, String name, String primKey, long ownerId,
             String actionId) {
 
-        if (ownerId != getUserId() || !isSignedIn()) {
+        if (ownerId != getUserId()) {
             return false;
         }
 

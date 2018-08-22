@@ -331,7 +331,12 @@ public class InputTag extends BaseInputTag {
 				inputName = inputName + StringPool.UNDERLINE + languageId;
 			}
 
-			validatorTagsMap.put(inputName, validatorTags);
+			List<ValidatorTag> inputValidatorTags = validatorTagsMap.get(inputName);
+			if (inputValidatorTags != null) {
+				inputValidatorTags.addAll(validatorTags);
+			} else {
+				validatorTagsMap.put(inputName, validatorTags);
+			}
 		}
 	}
 

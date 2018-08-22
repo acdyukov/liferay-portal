@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelHintsUtil;
 import com.liferay.taglib.aui.base.BaseValidatorTagImpl;
+import com.liferay.taglib.ui.InputDateTag;
 
 import javax.servlet.jsp.tagext.BodyContent;
 import javax.servlet.jsp.tagext.BodyTag;
@@ -75,7 +76,11 @@ public class ValidatorTagImpl
 	@Override
 	public int doEndTag() {
 		InputTag inputTag = (InputTag)findAncestorWithClass(
-			this, InputTag.class);
+				this, InputTag.class);
+		SelectTag selectTag = (SelectTag)findAncestorWithClass(
+				this, SelectTag.class);
+		InputDateTag inputDateTag = (InputDateTag)findAncestorWithClass(
+				this, InputDateTag.class);
 
 		String name = getName();
 
@@ -88,7 +93,15 @@ public class ValidatorTagImpl
 		ValidatorTag validatorTag = new ValidatorTagImpl(
 			name, getErrorMessage(), _body, _custom, _customValidatorRequired);
 
-		inputTag.addValidatorTag(name, validatorTag);
+		if (inputTag != null) {
+			inputTag.addValidatorTag(name, validatorTag);
+		}
+		else if (selectTag != null) {
+			selectTag.addValidatorTag(name, validatorTag);
+		}
+		else if (inputDateTag != null) {
+			inputDateTag.addValidatorTag(name, validatorTag);
+		}
 
 		return EVAL_BODY_BUFFERED;
 	}

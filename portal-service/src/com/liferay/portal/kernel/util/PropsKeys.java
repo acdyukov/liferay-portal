@@ -2841,4 +2841,17 @@ public interface PropsKeys {
 
 	public static final String SECURITY_CHECK_PRIVATE_SITE = "security.check.private.site";
 
+	public static final String TAGLIB_INPUT_DATE_SDF_DMY = "taglib.input.date.sdf.dmy";
+
+	public static final String TAGLIB_INPUT_DATE_SDF_HTML5 = "taglib.input.date.sdf.html5";
+
+	public static final String TAGLIB_INPUT_DATE_SDF_MDY = "taglib.input.date.sdf.mdy";
+
+	public static final String TAGLIB_INPUT_DATE_SDF_YMD = "taglib.input.date.sdf.ymd";
+
+	public static final String TAGLIB_INPUT_DATE_MASK_DMY = "taglib.input.date.mask.dmy";
+
+	public static final String TAGLIB_INPUT_DATE_MASK_MDY = "taglib.input.date.mask.mdy";
+
+	public static final String TAGLIB_INPUT_DATE_MASK_YMD = "taglib.input.date.mask.ymd";
 }

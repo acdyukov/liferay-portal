@@ -184,17 +184,17 @@ Format format = FastDateFormatFactoryUtil.getSimpleDateFormat(simpleDateFormatPa
 </aui:script>
 
 <%!
-private static final String _SIMPLE_DATE_FORMAT_PATTERN_DMY = "dd/MM/yyyy";
+private static final String _SIMPLE_DATE_FORMAT_PATTERN_DMY = PropsValues.TAGLIB_INPUT_DATE_SDF_DMY;;
 
-private static final String _SIMPLE_DATE_FORMAT_PATTERN_HTML5 = "yyyy-MM-dd";
+private static final String _SIMPLE_DATE_FORMAT_PATTERN_HTML5 = PropsValues.TAGLIB_INPUT_DATE_SDF_HTML5;
 
-private static final String _SIMPLE_DATE_FORMAT_PATTERN_MDY = "MM/dd/yyyy";
+private static final String _SIMPLE_DATE_FORMAT_PATTERN_MDY = PropsValues.TAGLIB_INPUT_DATE_SDF_MDY;
 
-private static final String _SIMPLE_DATE_FORMAT_PATTERN_YMD = "yyyy/MM/dd";
+private static final String _SIMPLE_DATE_FORMAT_PATTERN_YMD = PropsValues.TAGLIB_INPUT_DATE_SDF_YMD;
 
-private static final String _MASK_DMY = "%d/%m/%Y";
+private static final String _MASK_DMY = PropsValues.TAGLIB_INPUT_DATE_MASK_DMY;
 
-private static final String _MASK_MDY = "%m/%d/%Y";
+private static final String _MASK_MDY = PropsValues.TAGLIB_INPUT_DATE_MASK_MDY;
 
-private static final String _MASK_YMD = "%Y/%m/%d";
+private static final String _MASK_YMD = PropsValues.TAGLIB_INPUT_DATE_MASK_YMD;
 %>

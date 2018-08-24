@@ -12,6 +12,9 @@
 
 <@aui["field-wrapper"] data=data>
 	<@aui.select cssClass=cssClass helpMessage=escape(fieldStructure.tip) label=label multiple=multiple name=namespacedFieldName>
+		<#if multiple && required>
+			<@aui.validator name="required" />
+		</#if>
 		${fieldStructure.children}
 	</@aui.select>
 </@>

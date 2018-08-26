@@ -14,17 +14,40 @@
 
 package com.liferay.taglib.ui;
 
+import com.liferay.portal.kernel.servlet.taglib.aui.ValidatorTag;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.taglib.util.IncludeTag;
 
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.jsp.JspException;
 
 /**
  * @author Brian Wing Shun Chan
  */
 public class InputDateTag extends IncludeTag {
+
+	@Override
+	public int doEndTag() throws JspException {
+		updateFormValidators();
+
+		return super.doEndTag();
+	}
+
+	public void addValidatorTag(
+			String validatorName, ValidatorTag validatorTag) {
+
+		if (_validators == null) {
+			_validators = new HashMap<String, ValidatorTag>();
+		}
+
+		_validators.put(validatorName, validatorTag);
+	}
 
 	public void setAutoFocus(boolean autoFocus) {
 		_autoFocus = autoFocus;
@@ -139,6 +162,26 @@ public class InputDateTag extends IncludeTag {
 			"liferay-ui:input-date:yearValue", String.valueOf(_yearValue));
 	}
 
+	protected void updateFormValidators() {
+		if (_validators == null) {
+			return;
+		}
+
+		HttpServletRequest request =
+				(HttpServletRequest) pageContext.getRequest();
+
+		Map<String, List<ValidatorTag>> validatorTagsMap =
+				(Map<String, List<ValidatorTag>>) request.getAttribute(
+						"aui:form:validatorTagsMap");
+
+		if (validatorTagsMap != null) {
+			List<ValidatorTag> validatorTags = ListUtil.fromMapValues(
+					_validators);
+
+			validatorTagsMap.put(_name, validatorTags);
+		}
+	}
+
 	private static final String _PAGE = "/html/taglib/ui/input_date/page.jsp";
 
 	private boolean _autoFocus;
@@ -156,5 +199,6 @@ public class InputDateTag extends IncludeTag {
 	private boolean _nullable;
 	private String _yearParam;
 	private int _yearValue;
+	private Map<String, ValidatorTag> _validators;
 
 }

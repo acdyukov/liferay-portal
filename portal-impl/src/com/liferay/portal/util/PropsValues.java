@@ -2142,6 +2142,20 @@ public class PropsValues {
 
 	public static final boolean SECURITY_CHECK_PRIVATE_SITE = GetterUtil.getBoolean(PropsUtil.get(PropsKeys.SECURITY_CHECK_PRIVATE_SITE));
 
+	public static final String TAGLIB_INPUT_DATE_SDF_DMY = GetterUtil.getString(PropsUtil.get(PropsKeys.TAGLIB_INPUT_DATE_SDF_DMY));
+
+	public static final String TAGLIB_INPUT_DATE_SDF_HTML5 = GetterUtil.getString(PropsUtil.get(PropsKeys.TAGLIB_INPUT_DATE_SDF_HTML5));
+
+	public static final String TAGLIB_INPUT_DATE_SDF_MDY = GetterUtil.getString(PropsUtil.get(PropsKeys.TAGLIB_INPUT_DATE_SDF_MDY));
+
+	public static final String TAGLIB_INPUT_DATE_SDF_YMD = GetterUtil.getString(PropsUtil.get(PropsKeys.TAGLIB_INPUT_DATE_SDF_YMD));
+
+	public static final String TAGLIB_INPUT_DATE_MASK_DMY = GetterUtil.getString(PropsUtil.get(PropsKeys.TAGLIB_INPUT_DATE_MASK_DMY));
+
+	public static final String TAGLIB_INPUT_DATE_MASK_MDY = GetterUtil.getString(PropsUtil.get(PropsKeys.TAGLIB_INPUT_DATE_MASK_MDY));
+
+	public static final String TAGLIB_INPUT_DATE_MASK_YMD = GetterUtil.getString(PropsUtil.get(PropsKeys.TAGLIB_INPUT_DATE_MASK_YMD));
+
 	static {
 		if (!LAYOUT_USER_PRIVATE_LAYOUTS_ENABLED) {
 			LAYOUT_USER_PRIVATE_LAYOUTS_AUTO_CREATE = false;

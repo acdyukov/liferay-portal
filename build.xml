@@ -467,6 +467,18 @@ ${app.server.tomcat.dir}, then run "ant -buildfile build-dist.xml unzip-tomcat".
 						includes="tomcat-juli.jar"
 					/>
 				</delete>
+
+				<replace file="${app.server.dir}/conf/server.xml">
+					<replacetoken><![CDATA[<Valve className="org.apache.catalina.authenticator.SingleSignOn" />]]></replacetoken>
+					<replacevalue><![CDATA[<Valve className="org.apache.catalina.authenticator.SingleSignOn" />-->
+        <!--
+        <Valve className="org.apache.catalina.valves.RemoteIpValve"
+                internalProxies="127\.0\.[0-1]\.1"
+                remoteIpHeader="x-forwarded-for"
+                requestAttributesEnabled="true"
+                protocolHeader="x-forwarded-proto"
+                protocolHeaderHttpsValue="https"/>]]></replacevalue>
+				</replace>
 			</then>
 		</if>
 

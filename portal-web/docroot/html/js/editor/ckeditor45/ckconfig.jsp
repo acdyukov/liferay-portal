@@ -57,7 +57,7 @@ response.setContentType(ContentTypes.TEXT_JAVASCRIPT);
 Portlet uploadArticlePortlet = null;
 
 try{
-	uploadArticlePortlet = PortletLocalServiceUtil.getPortletById(PortalUtil.getCompanyId(request), "1003_WAR_uploadarticleportlet");
+	uploadArticlePortlet = PortletLocalServiceUtil.getPortletById("1003_WAR_uploadarticleportlet");
 }catch(Exception ex){}
 
 boolean isUploadArticleAvailable = false;

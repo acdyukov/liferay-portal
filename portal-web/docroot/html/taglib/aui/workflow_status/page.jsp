@@ -58,6 +58,10 @@
 			}
 		}
 	}
+	if (Validator.isNotNull(statusMessage) && model != null
+		&& model.getName().equals(JournalArticle.class.getName()) && status == WorkflowConstants.STATUS_APPROVED) {
+	    statusMessage = "published";
+	}
 	%>
 
 	<span class="<%= showIcon ? "workflow-status workflow-status-icon" : "workflow-status" %>">

@@ -14,16 +14,39 @@
 
 package com.liferay.taglib.ui;
 
+import com.liferay.portal.kernel.servlet.taglib.aui.ValidatorTag;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.taglib.util.IncludeTag;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.jsp.JspException;
 
 /**
  * @author Brian Wing Shun Chan
  */
 public class InputTimeTag extends IncludeTag {
+
+	@Override
+	public int doEndTag() throws JspException {
+		updateFormValidators();
+
+		return super.doEndTag();
+	}
+
+	public void addValidatorTag(
+			String validatorName, ValidatorTag validatorTag) {
+
+		if (_validators == null) {
+			_validators = new HashMap<String, ValidatorTag>();
+		}
+
+		_validators.put(validatorName, validatorTag);
+	}
 
 	public void setAmPmParam(String amPmParam) {
 		_amPmParam = amPmParam;
@@ -82,10 +105,10 @@ public class InputTimeTag extends IncludeTag {
 		_dateValue = null;
 		_disabled = false;
 		_hourParam = null;
-		_hourValue = 0;
+		_hourValue = -1;
 		_minuteInterval = 0;
 		_minuteParam = null;
-		_minuteValue = 0;
+		_minuteValue = -1;
 		_name = null;
 	}
 
@@ -116,6 +139,26 @@ public class InputTimeTag extends IncludeTag {
 		request.setAttribute("liferay-ui:input-time:name", _name);
 	}
 
+	protected void updateFormValidators() {
+		if (_validators == null) {
+			return;
+		}
+
+		HttpServletRequest request =
+				(HttpServletRequest) pageContext.getRequest();
+
+		Map<String, List<ValidatorTag>> validatorTagsMap =
+				(Map<String, List<ValidatorTag>>) request.getAttribute(
+						"aui:form:validatorTagsMap");
+
+		if (validatorTagsMap != null) {
+			List<ValidatorTag> validatorTags = ListUtil.fromMapValues(
+					_validators);
+
+			validatorTagsMap.put(_name, validatorTags);
+		}
+	}
+
 	private static final String _PAGE = "/html/taglib/ui/input_time/page.jsp";
 
 	private String _amPmParam;
@@ -130,5 +173,6 @@ public class InputTimeTag extends IncludeTag {
 	private String _minuteParam;
 	private int _minuteValue;
 	private String _name;
+	private Map<String, ValidatorTag> _validators;
 
 }

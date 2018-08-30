@@ -48,7 +48,10 @@ String hourParamId = namespace + HtmlUtil.getAUICompatibleId(hourParam);
 String minuteParamId = namespace + HtmlUtil.getAUICompatibleId(minuteParam);
 String nameId = namespace + HtmlUtil.getAUICompatibleId(name);
 
-Calendar calendar = CalendarFactoryUtil.getCalendar(1970, 0, 1, hourOfDayValue, minuteValue, 0, 0, timeZone);
+Calendar calendar = null;
+if (hourValue >= 0 && minuteValue >= 0) {
+    calendar = CalendarFactoryUtil.getCalendar(1970, 0, 1, hourOfDayValue, minuteValue, 0, 0, timeZone);
+}
 
 String simpleDateFormatPattern = _SIMPLE_DATE_FORMAT_PATTERN_ISO;
 
@@ -71,10 +74,10 @@ Format format = FastDateFormatFactoryUtil.getSimpleDateFormat(simpleDateFormatPa
 <span class="lfr-input-time <%= cssClass %>" id="<%= randomNamespace %>displayTime">
 	<c:choose>
 		<c:when test="<%= BrowserSnifferUtil.isMobile(request) %>">
-			<input class="input-small" <%= disabled ? "disabled=\"disabled\"" : "" %> id="<%= nameId %>" name="<%= namespace + HtmlUtil.escapeAttribute(name) %>" type="time" value="<%= format.format(calendar.getTime()) %>" />
+			<input class="input-small" <%= disabled ? "disabled=\"disabled\"" : "" %> id="<%= nameId %>" name="<%= namespace + HtmlUtil.escapeAttribute(name) %>" type="time" value='<%= (calendar != null) ? format.format(calendar.getTime()) : "" %>' />
 		</c:when>
 		<c:otherwise>
-			<input class="input-small" <%= disabled ? "disabled=\"disabled\"" : "" %> id="<%= nameId %>" name="<%= namespace + HtmlUtil.escapeAttribute(name) %>" placeholder="<%= placeholder %>" type="text" value="<%= format.format(calendar.getTime()) %>" />
+			<input class="input-small" <%= disabled ? "disabled=\"disabled\"" : "" %> id="<%= nameId %>" name="<%= namespace + HtmlUtil.escapeAttribute(name) %>" placeholder="<%= placeholder %>" type="text" value='<%= (calendar != null) ? format.format(calendar.getTime()) : "" %>' />
 		</c:otherwise>
 	</c:choose>
 

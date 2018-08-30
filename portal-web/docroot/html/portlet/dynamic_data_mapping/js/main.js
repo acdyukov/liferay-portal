@@ -864,7 +864,13 @@ AUI.add(
 					iconClass: 'icon-fb-text-box',
 					label: Liferay.Language.get('text-box'),
 					type: 'textarea'
-				}
+				},
+				{
+                    hiddenAttributes: MAP_HIDDEN_FIELD_ATTRS.DEFAULT,
+                    iconClass: 'icon-time',
+                    label: Liferay.Language.get('timepicker-label'),
+                    type: 'time'
+                }
 			],
 
 			DDM_TEMPLATE: [

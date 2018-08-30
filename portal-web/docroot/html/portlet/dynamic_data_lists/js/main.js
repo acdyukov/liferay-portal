@@ -334,7 +334,8 @@ AUI.add(
 					'radio': A.RadioCellEditor,
 					'select': A.DropDownCellEditor,
 					'text': A.TextCellEditor,
-					'textarea': A.TextAreaCellEditor
+					'textarea': A.TextAreaCellEditor,
+					'time' : A.TextCellEditor
 				},
 
 				prototype: {

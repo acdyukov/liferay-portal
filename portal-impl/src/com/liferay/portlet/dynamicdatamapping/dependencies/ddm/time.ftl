@@ -1,16 +1,16 @@
 <#include "../init.ftl">
 
-<#assign DATE = staticUtil["java.util.Calendar"].DATE>
-<#assign MONTH = staticUtil["java.util.Calendar"].MONTH>
-<#assign YEAR = staticUtil["java.util.Calendar"].YEAR>
-<#assign HOUR = staticUtil["java.util.Calendar"].HOUR_OF_DAY>
-<#assign MINUTE = staticUtil["java.util.Calendar"].MINUTE>
+<#assign defaultHourValue = -1>
+<#assign defaultMinuteValue = -1>
 
-<#assign calendar = calendarFactory.getCalendar(timeZone)>
-<#assign fieldValue = calendarFactory.getCalendar(calendar.get(YEAR), calendar.get(MONTH), calendar.get(DATE))>
+<#if (validator.isNotNull(fieldValue))>
+    <#assign time = fieldValue?split(":")>
+    <#assign defaultHourValue = getterUtil.getInteger(time[0])>
+    <#assign defaultMinuteValue = getterUtil.getInteger(time[1])>
+</#if>
 
-<#assign hourValue = paramUtil.getInteger(request, "${namespacedFieldName}Hour", fieldValue.get(HOUR))>
-<#assign minuteValue = paramUtil.getInteger(request, "${namespacedFieldName}Minute", fieldValue.get(MINUTE))>
+<#assign hourValue = paramUtil.getInteger(request, "${namespacedFieldName}Hour", defaultHourValue) />
+<#assign minuteValue = paramUtil.getInteger(request, "${namespacedFieldName}Minute", defaultMinuteValue) />
 
 <@aui["field-wrapper"] data=data helpMessage=escape(fieldStructure.tip) label=escape(label) name=namespacedFieldName required=required>
 	<@liferay_ui["input-time"]
@@ -19,7 +19,11 @@
 		minuteParam="${namespacedFieldName}Minute"
 		minuteValue=minuteValue
 		name="${namespacedFieldName}"
-	/>
+	>
+        <#if required>
+            <@aui.validator name="required" />
+        </#if>
+    </@>
 
 	${fieldStructure.children}
 </@>

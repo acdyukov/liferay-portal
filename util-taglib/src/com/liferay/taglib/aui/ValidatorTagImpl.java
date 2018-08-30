@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelHintsUtil;
 import com.liferay.taglib.aui.base.BaseValidatorTagImpl;
 import com.liferay.taglib.ui.InputDateTag;
+import com.liferay.taglib.ui.InputTimeTag;
 
 import javax.servlet.jsp.tagext.BodyContent;
 import javax.servlet.jsp.tagext.BodyTag;
@@ -81,6 +82,8 @@ public class ValidatorTagImpl
 				this, SelectTag.class);
 		InputDateTag inputDateTag = (InputDateTag)findAncestorWithClass(
 				this, InputDateTag.class);
+		InputTimeTag inputTimeTag = (InputTimeTag) findAncestorWithClass(
+				this, InputTimeTag.class);
 
 		String name = getName();
 
@@ -101,6 +104,9 @@ public class ValidatorTagImpl
 		}
 		else if (inputDateTag != null) {
 			inputDateTag.addValidatorTag(name, validatorTag);
+		}
+		else if (inputTimeTag != null) {
+			inputTimeTag.addValidatorTag(name, validatorTag);
 		}
 
 		return EVAL_BODY_BUFFERED;

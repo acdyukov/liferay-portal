@@ -72,6 +72,7 @@
 			<xs:enumeration value="document-library" />
 			<xs:enumeration value="link-to-page" />
 			<xs:enumeration value="html" />
+			<xs:enumeration value="selectuser" />
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="entry-name">

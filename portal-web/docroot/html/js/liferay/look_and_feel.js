@@ -837,7 +837,8 @@ AUI.add(
 						titles: {},
 						useCustomTitle: false,
 						useLinkForTitle: false,
-						linkForTitle: EMPTY
+						linkForTitle: EMPTY,
+						anchor: EMPTY
 					},
 					spacingData: {
 						margin: {
@@ -968,6 +969,7 @@ AUI.add(
 					instance._customTitleCheckbox = instance._getNodeById('use-custom-titleCheckbox');
                     instance._useLinkForTitle = instance._getNodeById('use-link-for-titleCheckbox');
                     instance._linkForTitle = instance._getNodeById('link-for-title');
+                    instance._anchor = instance._getNodeById('anchor');
 					instance._showBorders = instance._getNodeById('show-borders');
 					instance._borderNote = A.one('#border-note');
 					instance._portletLanguage = instance._getNodeById('lfr-portlet-language');
@@ -1194,6 +1196,10 @@ AUI.add(
                                 instance._linkForTitle = instance._getNodeById('link-for-title');
 							}
 							instance._objData.portletData.linkForTitle = instance._linkForTitle.val();
+							if (!instance._anchor) {
+                                instance._anchor = instance._getNodeById('anchor');
+                            }
+                            instance._objData.portletData.anchor = instance._anchor.val();
 
 							var previousCSSClass = instance._objData.advancedData.customCSSClassName;
 							var newCSSClass = instance._customCSSClassName.val();
@@ -1292,6 +1298,7 @@ AUI.add(
 				var customTitleCheckbox = instance._customTitleCheckbox;
 				var useLinkForTitle = instance._useLinkForTitle;
 				var linkForTitle = instance._linkForTitle;
+				var anchor = instance._anchor;
 				var showBorders = instance._showBorders;
 				var language = instance._portletLanguage;
 				var borderNote = instance._borderNote;
@@ -1540,7 +1547,8 @@ AUI.add(
 
 				instance._setCheckbox(instance._customTitleCheckbox, portletData.useCustomTitle);
 				instance._setCheckbox(instance._useLinkForTitle, portletData.useLinkForTitle);
-				instance._setInput(instance._linkForTitle, portletData.linkForTitle)
+				instance._setInput(instance._linkForTitle, portletData.linkForTitle);
+				instance._setInput(instance._anchor, portletData.anchor);
 				instance._setSelect(instance._showBorders, portletData.showBorders);
 				instance._setSelect(instance._portletLanguage, instance._currentLanguage);
 				instance._setSelect(instance._portletLinksTarget, portletData.portletLinksTarget);

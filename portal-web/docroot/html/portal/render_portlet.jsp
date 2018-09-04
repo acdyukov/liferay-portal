@@ -375,6 +375,8 @@ portletDisplay.setUseLinkForTitle(GetterUtil.getBoolean(
 		portletSetup.getValue("portletSetupUseLinkForTitle", null)));
 portletDisplay.setLinkForTitle(GetterUtil.getString(
 		portletSetup.getValue("portletSetupLinkForTitle", null)));
+portletDisplay.setAnchor(GetterUtil.getString(
+        portletSetup.getValue("portletSetupAnchor", null)));
 
 // Portlet custom CSS class name
 

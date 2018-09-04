@@ -105,6 +105,7 @@ public class PortletDisplay implements Serializable {
 		_webDAVEnabled = master.isWebDAVEnabled();
 		_useLinkForTitle = master.isUseLinkForTitle();
 		_linkForTitle = master.getLinkForTitle();
+		_anchor = master.getAnchor();
 	}
 
 	public void copyTo(PortletDisplay slave) {
@@ -172,6 +173,7 @@ public class PortletDisplay implements Serializable {
 		slave.setUseLinkForTitle(_useLinkForTitle);
 		slave.setLinkForTitle(_linkForTitle);
 		slave._title = _title;
+		slave._anchor = _anchor;
 	}
 
 	public int getColumnCount() {
@@ -527,6 +529,7 @@ public class PortletDisplay implements Serializable {
 		_webDAVEnabled = false;
 		_useLinkForTitle = false;
 		_linkForTitle = StringPool.BLANK;
+		_anchor = StringPool.BLANK;
 	}
 
 	/**
@@ -804,6 +807,14 @@ public class PortletDisplay implements Serializable {
 		this._linkForTitle = _linkForTitle;
 	}
 
+	public String getAnchor() {
+		return _anchor;
+	}
+
+	public void setAnchor(String anchor) {
+		this._anchor = anchor;
+	}
+
 	public void writeContent(Writer writer) throws IOException {
 		_content.writeTo(writer);
 	}
@@ -814,6 +825,7 @@ public class PortletDisplay implements Serializable {
 		StringPool.BLANK);
 
 	private boolean _active;
+	private String _anchor;
 	private int _columnCount;
 	private String _columnId = StringPool.BLANK;
 	private int _columnPos;

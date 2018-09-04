@@ -5,8 +5,10 @@
 #set ($portlet_back_url = $htmlUtil.escapeHREF($portlet_display.getURLBack()))
 #set ($portlet_use_link_for_title = $portlet_display.isUseLinkForTitle())
 #set ($portlet_link_for_title = $portlet_display.getLinkForTitle())
+#set ($portlet_anchor = $portlet_display.getAnchor())
 
 <section class="portlet" id="portlet_$portlet_id">
+    #if ($portlet_anchor && !$portlet_anchor.empty)<a id="${portlet_anchor}"></a>#end
 	<header class="portlet-topper">
 		<h1 class="portlet-title">
 			$theme.portletIconPortlet() <span class="portlet-title-text#if($portlet_use_link_for_title) not-editable#end">

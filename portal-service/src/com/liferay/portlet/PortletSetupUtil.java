@@ -111,8 +111,12 @@ public class PortletSetupUtil {
 		String linkForTitle = GetterUtil.getString(
 				portletSetup.getValue("portletSetupLinkForTitle", null));
 
+		String anchor = GetterUtil.getString(
+				portletSetup.getValue("portletSetupAnchor", null));
+
 		portletDataJSONObject.put("useLinkForTitle", useLinkForTitle);
 		portletDataJSONObject.put("linkForTitle", linkForTitle);
+		portletDataJSONObject.put("anchor", anchor);
 		portletDataJSONObject.put("useCustomTitle", useCustomTitle);
 		portletDataJSONObject.put("showBorders", showBorders);
 		portletDataJSONObject.put("portletLinksTarget", linkToLayoutUuid);

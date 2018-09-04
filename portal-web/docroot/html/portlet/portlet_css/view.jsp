@@ -65,6 +65,8 @@ if (PropsValues.MOBILE_DEVICE_STYLING_WAP_ENABLED) {
 
 					<aui:input name="link-for-title" type="text"/>
 
+					<aui:input name="anchor" type="text"/>
+
 					<aui:select label="link-portlet-urls-to-page" name="lfr-point-links">
 						<aui:option label="current-page" value="" />
 

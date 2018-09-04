@@ -157,6 +157,7 @@ boolean wsrp = ParamUtil.getBoolean(PortalUtil.getOriginalServletRequest(request
 				%>
 
 				<div class="portlet-borderless-container" <%= containerStyles %>>
+				    <c:if test="<%= Validator.isNotNull(portletDisplay.getAnchor())%>"><a id="<%=portletDisplay.getAnchor()%>"></a></c:if>
 					<c:if test="<%= showPortletActions || portletDisplay.isShowBackIcon() %>">
 						<div class="portlet-borderless-bar">
 							<c:if test="<%= showPortletActions %>">

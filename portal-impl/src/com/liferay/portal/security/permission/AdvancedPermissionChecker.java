@@ -535,7 +535,8 @@ public class AdvancedPermissionChecker extends BasePermissionChecker {
             boolean checkGroupMember = PropsValues.SECURITY_CHECK_PRIVATE_SITE;
             if (checkGroupMember && !group.isUserPersonalSite()
                     && (group.getType() != GroupConstants.TYPE_SITE_OPEN)
-                    && !group.getTypeLabel().equals(GroupConstants.TYPE_SITE_SYSTEM_LABEL)) {
+                    && !group.getTypeLabel().equals(GroupConstants.TYPE_SITE_SYSTEM_LABEL)
+                    && !group.getName().equals(GroupConstants.GUEST)) {
                 ClassName className = null;
                 try {
                     className = ClassNameLocalServiceUtil.getClassName(name);

@@ -25,6 +25,19 @@ if (fieldsModel.contains(name)) {
 
 	value = field.getRenderedValue(themeDisplay.getLocale());
 
+	if (field.getType().equals("selectuser")) {
+	    Long userId = GetterUtil.getLong(value, 0);
+	    if (userId > 0) {
+	        User selectUser = null;
+	        try {
+	            selectUser = UserLocalServiceUtil.fetchUser(userId);
+	        } catch (Exception e) {}
+	        if (Validator.isNotNull(selectUser)) {
+	            value = selectUser.getFullName();
+	        }
+	    }
+	}
+
 	if (dataType.equals(FieldConstants.HTML)) {
 		value = "<a href=\"javascript:Liferay.DDLUtil.openPreviewDialog('" + HtmlUtil.escapeJS(value) + "');\">(" + LanguageUtil.get(pageContext, "preview") + ")</a>";
 	}

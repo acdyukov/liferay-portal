@@ -699,6 +699,8 @@
 
 		<action path="/dynamic_data_mapping/view_template" forward="portlet.dynamic_data_mapping.view_template" />
 
+		<action path="/dynamic_data_mapping/get_site_users_action" type="com.liferay.portlet.dynamicdatamapping.action.GetSiteUsersAction" />
+
 		<!-- Expando -->
 
 		<action path="/expando/edit_expando" type="com.liferay.portlet.expando.action.EditExpandoAction">

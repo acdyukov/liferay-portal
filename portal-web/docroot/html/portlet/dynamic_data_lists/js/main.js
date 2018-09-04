@@ -335,7 +335,8 @@ AUI.add(
 					'select': A.DropDownCellEditor,
 					'text': A.TextCellEditor,
 					'textarea': A.TextAreaCellEditor,
-					'time' : A.TextCellEditor
+					'time' : A.TextCellEditor,
+					'selectuser': A.TextCellEditor
 				},
 
 				prototype: {

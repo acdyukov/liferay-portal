@@ -870,6 +870,12 @@ AUI.add(
                     iconClass: 'icon-time',
                     label: Liferay.Language.get('timepicker-label'),
                     type: 'time'
+                },
+				{
+                    hiddenAttributes: MAP_HIDDEN_FIELD_ATTRS.DEFAULT,
+                    iconClass: 'icon-user',
+                    label: Liferay.Language.get('select-user'),
+                    type: 'selectuser'
                 }
 			],
 

@@ -620,6 +620,27 @@ int firstDayOfWeek = localeCal.getFirstDayOfWeek() - 1;
                 }
             });
 
+			var SelectUserField = A.Component.create(
+                {
+                    ATTRS:
+                    {
+                        dataType:
+                        {
+                            value: 'selectuser'
+                        },
+
+                        fieldNamespace:
+                        {
+                            value: 'ddm'
+                        }
+                    },
+
+                    EXTENDS: A.FormBuilderTextField,
+
+                    NAME: 'selectuser'
+                }
+            );
+
 			FormBuilderTypes['ddm-date'] = DDMDateField;
 			FormBuilderTypes['ddm-decimal'] = DDMDecimalField;
 			FormBuilderTypes['ddm-documentlibrary'] = DDMDocumentLibraryField;
@@ -630,6 +651,7 @@ int firstDayOfWeek = localeCal.getFirstDayOfWeek() - 1;
 			FormBuilderTypes['ddm-separator'] = DDMSeparatorField;
 			FormBuilderTypes['ddm-text-html'] = DDMHTMLTextField;
 			FormBuilderTypes['wcm-image'] = WCMImageField;
+			FormBuilderTypes['selectuser'] = SelectUserField;
 			FormBuilderTypes['time'] = TimePickerField;
 		},
 		'',

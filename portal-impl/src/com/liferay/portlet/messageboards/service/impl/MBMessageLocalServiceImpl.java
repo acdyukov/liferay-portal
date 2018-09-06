@@ -1181,9 +1181,10 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 				new ThreadLastPostDateComparator(false);
 
 			MBThread[] prevAndNextThreads =
-				mbThreadPersistence.findByG_C_PrevAndNext(
-					message.getThreadId(), message.getGroupId(),
-					message.getCategoryId(), comparator);
+					mbThreadPersistence.findByG_C_S_PrevAndNext(
+							message.getThreadId(), message.getGroupId(),
+							message.getCategoryId(), WorkflowConstants.STATUS_APPROVED,
+							comparator);
 
 			previousThread = prevAndNextThreads[0];
 			nextThread = prevAndNextThreads[2];

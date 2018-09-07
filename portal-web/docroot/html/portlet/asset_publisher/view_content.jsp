@@ -105,7 +105,9 @@ try {
 	<liferay-util:include page="/html/portlet/asset_publisher/asset_html_metadata.jsp" />
 
 <%
-	PortalUtil.addPortletBreadcrumbEntry(request, title, currentURL);
+	if (!assetRendererFactory.getPortletId().equals(PortletKeys.DOCUMENT_LIBRARY)) {
+	    PortalUtil.addPortletBreadcrumbEntry(request, title, currentURL);
+	}
 }
 catch (NoSuchModelException nsme) {
 	SessionErrors.add(renderRequest, NoSuchModelException.class.getName());

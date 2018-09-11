@@ -79,6 +79,13 @@ Format format = FastDateFormatFactoryUtil.getSimpleDateFormat(simpleDateFormatPa
 			<aui:input disabled="<%= disabled %>" id="<%= HtmlUtil.getAUICompatibleId(name) %>" label="" name="<%= name %>" placeholder="<%= StringUtil.toLowerCase(simpleDateFormatPattern) %>" title="" type="text" value="<%= nullable ? StringPool.BLANK : format.format(calendar.getTime()) %>" wrappedField="<%= true %>">
 				<aui:validator customValidatorRequired="<%= Boolean.FALSE %>" errorMessage="please-enter-a-valid-date" name="custom">
 					function(val) {
+						<%-- MEDSI-105 Fix for IE9 placeholders
+						In IE9, value of placeholder sets for value of input
+						So, we`ve got this validator getting error
+						Solution is to check when we got this case and return true --%>
+						if ( val === "<%= StringUtil.toLowerCase(simpleDateFormatPattern) %>") {
+							return true;
+						}
 						return !val.trim() || AUI().use('aui-datatype-date-parse').Parsers.date('<%= mask %>', val);
 					}
 				</aui:validator>
@@ -175,6 +182,14 @@ Format format = FastDateFormatFactoryUtil.getSimpleDateFormat(simpleDateFormatPa
 					}
 				}
 			);
+
+			container.one('[type=text]').on('change', function (e) {
+				if (e.target.get('value') === '') {
+					container.one('#<%= dayParamId %>').val('');
+					container.one('#<%= monthParamId %>').val('');
+					container.one('#<%= yearParamId %>').val('');
+				}
+			});
 
 			return datePicker;
 		}

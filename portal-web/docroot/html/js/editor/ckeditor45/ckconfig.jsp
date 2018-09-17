@@ -56,14 +56,17 @@ response.setContentType(ContentTypes.TEXT_JAVASCRIPT);
 
 Portlet uploadArticlePortlet = null;
 
+long companyId = PortalUtil.getCompanyId(request);
 try{
-	uploadArticlePortlet = PortletLocalServiceUtil.getPortletById(PortalUtil.getCompanyId(request), "1003_WAR_uploadarticleportlet");
+	uploadArticlePortlet = PortletLocalServiceUtil.getPortletById(companyId, "1003_WAR_uploadarticleportlet");
 }catch(Exception ex){}
 
 boolean isUploadArticleAvailable = false;
 
 if (uploadArticlePortlet != null) {
-	isUploadArticleAvailable = uploadArticlePortlet.isActive();
+	if (uploadArticlePortlet.getCompanyId() == companyId) {
+		isUploadArticleAvailable = uploadArticlePortlet.isActive();
+	}
 }
 
 %>

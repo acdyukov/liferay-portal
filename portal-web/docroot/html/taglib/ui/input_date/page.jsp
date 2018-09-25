@@ -183,6 +183,9 @@ Format format = FastDateFormatFactoryUtil.getSimpleDateFormat(simpleDateFormatPa
 				}
 			);
 
+			if (!container) {
+				container = A.one('#<%= randomNamespace %>displayDate');
+			}
 			container.one('[type=text]').on('change', function (e) {
 				if (e.target.get('value') === '') {
 					container.one('#<%= dayParamId %>').val('');

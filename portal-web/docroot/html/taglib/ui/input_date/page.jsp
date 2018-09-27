@@ -99,6 +99,8 @@ Format format = FastDateFormatFactoryUtil.getSimpleDateFormat(simpleDateFormatPa
 </span>
 
 <aui:script use='<%= "aui-datepicker" + (BrowserSnifferUtil.isMobile(request) ? "-native" : StringPool.BLANK) %>'>
+	var container = A.one('#<%= randomNamespace %>displayDate');
+	if (!container) return;
 	Liferay.component(
 		'<%= nameId %>DatePicker',
 		function() {
